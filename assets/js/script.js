@@ -10,6 +10,12 @@ function getButtons() {
     button.addEventListener('click', clickHandler);
   }
 
+  document.getElementById('answer-box').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      checkAnswer();
+    }
+  })
+
   runGame('addition');
 }
 
@@ -29,6 +35,10 @@ function clickHandler(e) {
  */
 
 function runGame(gameType) {
+
+  let answerBox = document.getElementById('answer-box');
+  answerBox.value = '';
+  answerBox.focus();
 
   // creates two random numbers between 1 and 25
   let num1 = Math.floor(Math.random() * 25) + 1;
