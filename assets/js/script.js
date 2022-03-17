@@ -17,7 +17,7 @@ function clickHandler(e) {
   let buttonType = e.currentTarget.getAttribute('data-type');
 
   if (buttonType === 'submit') {
-    alert('You clicked submit!');
+    checkAnswer();
   } else {
     runGame(buttonType);
   }
@@ -42,8 +42,22 @@ function runGame(gameType) {
   }
 }
 
+/**
+ * Checks the answer against the first element in
+ * the returned calculateCorrectAnswer array
+ */
 function checkAnswer() {
+  let userAnswer = +document.getElementById('answer-box').value;
+  let calculatedAnswer = calculateCorrectAnswer();
+  let isCorrect = userAnswer === calculatedAnswer[0];
 
+  if (isCorrect) {
+    alert('Hey! You got it right! :D');
+  } else {
+    alert(`Awww... you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}`);
+  }
+
+  runGame(calculatedAnswer[1]);
 }
 
 /**
